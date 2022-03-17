@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -33,3 +35,10 @@ const localizationDelegate = [
   GlobalWidgetsLocalizations.delegate,
   GlobalCupertinoLocalizations.delegate,
 ];
+
+const _localUrl = 'http://192.168.1.2/mady/webservice_seller.php';
+const _onlineUrl = 'https://codingwithsaeed.ir/api/mady/webservice_seller.php';
+const _localCheckUrl = 'http://192.168.1.2/mady/check_online.php';
+const _onlineCheckUrl = 'https://codingwithsaeed.ir/api/mady/check_online.php';
+final currentDataUrl = Uri.parse(_localUrl);
+final currentCheckUrl = Uri.parse(_localCheckUrl);
