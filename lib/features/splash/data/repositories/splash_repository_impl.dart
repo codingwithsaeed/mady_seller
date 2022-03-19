@@ -17,7 +17,7 @@ class SplashRepositoryImpl implements SplashRepository {
       if (!await _networkInfo.isConnected) {
         return const Left(ServerFailure(Failure.noInternetConnection));
       }
-      return Right(_datasource.isLoggedIn());
+      return Right(await _datasource.isLoggedIn());
     } on CacheException {
       return const Right(false);
     }

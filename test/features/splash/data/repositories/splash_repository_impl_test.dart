@@ -27,7 +27,7 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => false);
-        when(datasource.isLoggedIn()).thenAnswer((_) => false);
+        when(datasource.isLoggedIn()).thenAnswer((_) async => false);
         //act
         final result = await sut.checkLoggin();
         //assert
@@ -40,7 +40,7 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.isLoggedIn()).thenAnswer((_) => true);
+        when(datasource.isLoggedIn()).thenAnswer((_) async => true);
         //act
         final result = await sut.checkLoggin();
         //assert
