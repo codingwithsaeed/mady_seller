@@ -23,35 +23,35 @@ class _$SellerTearOff {
   const _$SellerTearOff();
 
   _Seller call(
-      String sid,
-      String storeName,
-      String phone,
-      String category,
-      String address,
-      String website,
-      String logo,
-      String lat,
-      String lng,
-      String pocket,
-      String offerCount,
-      String expire,
-      String hasSpecial,
-      String specialCount) {
+      {required String sid,
+      required String storeName,
+      required String phone,
+      required String category,
+      required String address,
+      required String website,
+      required String logo,
+      required String lat,
+      required String lng,
+      required String pocket,
+      required String offerCount,
+      required String expire,
+      required String hasSpecial,
+      required String specialCount}) {
     return _Seller(
-      sid,
-      storeName,
-      phone,
-      category,
-      address,
-      website,
-      logo,
-      lat,
-      lng,
-      pocket,
-      offerCount,
-      expire,
-      hasSpecial,
-      specialCount,
+      sid: sid,
+      storeName: storeName,
+      phone: phone,
+      category: category,
+      address: address,
+      website: website,
+      logo: logo,
+      lat: lat,
+      lng: lng,
+      pocket: pocket,
+      offerCount: offerCount,
+      expire: expire,
+      hasSpecial: hasSpecial,
+      specialCount: specialCount,
     );
   }
 
@@ -241,59 +241,59 @@ class __$SellerCopyWithImpl<$Res> extends _$SellerCopyWithImpl<$Res>
     Object? specialCount = freezed,
   }) {
     return _then(_Seller(
-      sid == freezed
+      sid: sid == freezed
           ? _value.sid
           : sid // ignore: cast_nullable_to_non_nullable
               as String,
-      storeName == freezed
+      storeName: storeName == freezed
           ? _value.storeName
           : storeName // ignore: cast_nullable_to_non_nullable
               as String,
-      phone == freezed
+      phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      category == freezed
+      category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String,
-      address == freezed
+      address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      website == freezed
+      website: website == freezed
           ? _value.website
           : website // ignore: cast_nullable_to_non_nullable
               as String,
-      logo == freezed
+      logo: logo == freezed
           ? _value.logo
           : logo // ignore: cast_nullable_to_non_nullable
               as String,
-      lat == freezed
+      lat: lat == freezed
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as String,
-      lng == freezed
+      lng: lng == freezed
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as String,
-      pocket == freezed
+      pocket: pocket == freezed
           ? _value.pocket
           : pocket // ignore: cast_nullable_to_non_nullable
               as String,
-      offerCount == freezed
+      offerCount: offerCount == freezed
           ? _value.offerCount
           : offerCount // ignore: cast_nullable_to_non_nullable
               as String,
-      expire == freezed
+      expire: expire == freezed
           ? _value.expire
           : expire // ignore: cast_nullable_to_non_nullable
               as String,
-      hasSpecial == freezed
+      hasSpecial: hasSpecial == freezed
           ? _value.hasSpecial
           : hasSpecial // ignore: cast_nullable_to_non_nullable
               as String,
-      specialCount == freezed
+      specialCount: specialCount == freezed
           ? _value.specialCount
           : specialCount // ignore: cast_nullable_to_non_nullable
               as String,
@@ -305,20 +305,20 @@ class __$SellerCopyWithImpl<$Res> extends _$SellerCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Seller implements _Seller {
   const _$_Seller(
-      this.sid,
-      this.storeName,
-      this.phone,
-      this.category,
-      this.address,
-      this.website,
-      this.logo,
-      this.lat,
-      this.lng,
-      this.pocket,
-      this.offerCount,
-      this.expire,
-      this.hasSpecial,
-      this.specialCount);
+      {required this.sid,
+      required this.storeName,
+      required this.phone,
+      required this.category,
+      required this.address,
+      required this.website,
+      required this.logo,
+      required this.lat,
+      required this.lng,
+      required this.pocket,
+      required this.offerCount,
+      required this.expire,
+      required this.hasSpecial,
+      required this.specialCount});
 
   factory _$_Seller.fromJson(Map<String, dynamic> json) =>
       _$$_SellerFromJson(json);
@@ -412,20 +412,20 @@ class _$_Seller implements _Seller {
 
 abstract class _Seller implements Seller {
   const factory _Seller(
-      String sid,
-      String storeName,
-      String phone,
-      String category,
-      String address,
-      String website,
-      String logo,
-      String lat,
-      String lng,
-      String pocket,
-      String offerCount,
-      String expire,
-      String hasSpecial,
-      String specialCount) = _$_Seller;
+      {required String sid,
+      required String storeName,
+      required String phone,
+      required String category,
+      required String address,
+      required String website,
+      required String logo,
+      required String lat,
+      required String lng,
+      required String pocket,
+      required String offerCount,
+      required String expire,
+      required String hasSpecial,
+      required String specialCount}) = _$_Seller;
 
   factory _Seller.fromJson(Map<String, dynamic> json) = _$_Seller.fromJson;
 

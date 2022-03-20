@@ -7,20 +7,20 @@ part of 'seller.dart';
 // **************************************************************************
 
 _$_Seller _$$_SellerFromJson(Map<String, dynamic> json) => _$_Seller(
-      json['sid'] as String,
-      json['storeName'] as String,
-      json['phone'] as String,
-      json['category'] as String,
-      json['address'] as String,
-      json['website'] as String,
-      json['logo'] as String,
-      json['lat'] as String,
-      json['lng'] as String,
-      json['pocket'] as String,
-      json['offerCount'] as String,
-      json['expire'] as String,
-      json['hasSpecial'] as String,
-      json['specialCount'] as String,
+      sid: json['sid'] as String,
+      storeName: json['storeName'] as String,
+      phone: json['phone'] as String,
+      category: json['category'] as String,
+      address: json['address'] as String,
+      website: json['website'] as String,
+      logo: json['logo'] as String,
+      lat: json['lat'] as String,
+      lng: json['lng'] as String,
+      pocket: json['pocket'] as String,
+      offerCount: json['offerCount'] as String,
+      expire: json['expire'] as String,
+      hasSpecial: json['hasSpecial'] as String,
+      specialCount: json['specialCount'] as String,
     );
 
 Map<String, dynamic> _$$_SellerToJson(_$_Seller instance) => <String, dynamic>{
