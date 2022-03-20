@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mady_seller/core/errors/failure.dart';
 import 'package:mady_seller/features/splash/domain/usecases/splash_usecase.dart';
@@ -11,7 +9,6 @@ class SplashController extends GetxController with StateMixin<bool> {
   SplashController(this._usecase);
 
   @override
-  @mustCallSuper
   void onInit() {
     checkLoginState();
     super.onInit();

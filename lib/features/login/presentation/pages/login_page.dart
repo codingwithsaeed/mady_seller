@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:mady_seller/features/login/presentation/controller/login_controller.dart';
 
@@ -17,6 +18,18 @@ class LoginPage extends GetView<LoginController> {
   }
 
   Widget buildBody() {
+    controller.addListener((() {
+      if (controller.status.isSuccess) {
+        print(controller.state.toString());
+        print('going to main');
+      }
+      if (controller.status.isError) {
+        Get.snackbar('خطا', controller.status.errorMessage!,
+            backgroundColor: Colors.red.shade900,
+            colorText: Colors.white,
+            snackPosition: SnackPosition.BOTTOM);
+      }
+    }));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -32,27 +45,40 @@ class LoginPage extends GetView<LoginController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               MyTextField(
-                label: 'نام کاربری',
+                label: 'شماره موبایل',
                 icon: Icons.person,
-                onChange: (value) {},
+                onChange: (value) => controller.phone.value = value,
               ),
               MyTextField(
                 label: 'گذرواژه',
                 icon: Icons.password,
                 isPassword: true,
-                onChange: (value) {},
+                onChange: (value) => controller.password.value = value,
               ),
-              MyButton(
-                label: 'ورود به برنامه',
-                onPressed: () {},
-                color: Colors.yellow.shade900,
-              ),
+              controller.obx(((state) => returnButton()),
+                  onError: (error) => returnButton(),
+                  onLoading: returnLoading(),
+                  onEmpty: returnButton()),
             ],
           ),
         ),
       ],
     );
   }
+}
+
+Widget returnLoading() => Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+          child: CircularProgressIndicator(color: Colors.yellow.shade900)),
+    );
+
+Widget returnButton() {
+  return MyButton(
+    label: 'ورود به برنامه',
+    onPressed: () => Get.find<LoginController>().doLogin(),
+    color: Colors.yellow.shade900,
+  );
 }
 
 class MyButton extends StatelessWidget {
