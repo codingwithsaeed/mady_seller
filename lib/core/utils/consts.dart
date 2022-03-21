@@ -17,7 +17,7 @@ final themeData = ThemeData(
   fontFamily: 'Vazir',
 );
 
-const materialColor = MaterialColor(0xFFFFA000, <int, Color>{
+const materialColor = MaterialColor(0xFFF9A825, <int, Color>{
   50: Color.fromRGBO(255, 253, 231, 1),
   100: Color.fromRGBO(255, 249, 196, 1),
   200: Color.fromRGBO(255, 245, 157, 1),

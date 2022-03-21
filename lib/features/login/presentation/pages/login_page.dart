@@ -69,14 +69,14 @@ class LoginPage extends GetView<LoginController> {
 Widget returnLoading() => Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-          child: CircularProgressIndicator(color: Colors.yellow.shade900)),
+          child: CircularProgressIndicator(color: Colors.yellow.shade800)),
     );
 
 Widget returnButton() {
   return MyButton(
     label: 'ورود به برنامه',
     onPressed: () => Get.find<LoginController>().doLogin(),
-    color: Colors.yellow.shade900,
+    color: Colors.yellow.shade800,
   );
 }
 
