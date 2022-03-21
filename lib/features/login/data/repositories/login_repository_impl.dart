@@ -21,21 +21,21 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<Either<Failure, Seller>> doLogin(Params params) async {
     try {
       if (!await _networkInfo.isConnected) {
-        return const Left(ServerFailure(Failure.noInternetConnection));
+        return const Left(GeneralFailure(Failure.noInternetConnection));
       }
 
       final result = await _remote.doLogin(params.param);
 
       if (result.success == 1) return Right(result.data!);
 
-      return const Left(ServerFailure(Failure.notFound));
+      return const Left(GeneralFailure(Failure.notFound));
     } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      return Left(GeneralFailure(e.message));
     }
   }
 
   @override
-  Future<void> saveLogin() async {
-    await _local.saveLogin();
+  Future<void> saveSellerId(String sellerId) async {
+    await _local.saveSellerId(sellerId);
   }
 }

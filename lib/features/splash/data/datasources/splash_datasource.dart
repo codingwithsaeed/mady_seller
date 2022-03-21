@@ -1,20 +1,22 @@
-import 'package:mady_seller/core/cache/cache_provider.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
 
 abstract class SplashDatasource {
   /// Uses a shared prefrences to determine if user is logged in
   /// Throws a [CacheException] on all errors
-  Future<bool> isLoggedIn();
+  bool isLoggedIn();
 }
 
 class SplashDatasourceImpl implements SplashDatasource {
-  
-  const SplashDatasourceImpl();
+  final GetStorage _storage;
+
+  const SplashDatasourceImpl(this._storage);
+
   @override
-  Future<bool> isLoggedIn() async {
-    final result = await CacheProviderImpl().getBool('LOGIN');
+  bool isLoggedIn() {
+    final result = _storage.read('id');
     if (result == null) throw const CacheException(Failure.notFound);
-    return result;
+    return true;
   }
 }

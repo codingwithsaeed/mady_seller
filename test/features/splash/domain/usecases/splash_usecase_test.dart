@@ -24,7 +24,7 @@ void main() {
         //arrange
         when(repository.checkLoggin()).thenAnswer(
           (_) async => const Left(
-            ServerFailure(Failure.noInternetConnection),
+            GeneralFailure(Failure.noInternetConnection),
           ),
         );
         //act
@@ -33,7 +33,7 @@ void main() {
         expect(
           result,
           const Left(
-            ServerFailure(Failure.noInternetConnection),
+            GeneralFailure(Failure.noInternetConnection),
           ),
         );
         verify(repository.checkLoggin());

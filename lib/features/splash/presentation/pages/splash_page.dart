@@ -10,13 +10,18 @@ class SplashPage extends GetWidget<SplashController> {
   Widget build(BuildContext context) {
     controller.addListener(() {
       if (controller.status.isSuccess) {
-        !controller.state!
-            ? Get.offNamed(AppRoutes.login)
-            : print('going to main');
+        controller.state!
+            ? Get.offNamed(AppRoutes.home)
+            : Get.offNamed(AppRoutes.login);
       }
       if (controller.status.isError) {
-        Get.snackbar('خطا', controller.status.errorMessage!,
-            colorText: Colors.white, snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar(
+          'خطا',
+          controller.status.errorMessage!,
+          backgroundColor: Colors.red.shade700,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+        );
       }
     });
     return Scaffold(

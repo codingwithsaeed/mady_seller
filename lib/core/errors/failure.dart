@@ -5,10 +5,10 @@ abstract class Failure  {
   static const noInternetConnection = 'دستگاه به اینترنت متصل نیست';
 }
 
-class ServerFailure extends Equatable implements Failure {
+class GeneralFailure extends Equatable implements Failure {
   final String message;
 
-  const ServerFailure(this.message);
+  const GeneralFailure(this.message);
 
   @override
   List<Object?> get props => [message];

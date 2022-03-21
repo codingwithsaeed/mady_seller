@@ -28,12 +28,12 @@ class LoginController extends GetxController with StateMixin<Seller> {
       }),
     );
     result.fold((error) {
-      if (error is ServerFailure) {
+      if (error is GeneralFailure) {
         change(null, status: RxStatus.error(error.message));
       }
     }, (seller) async {
       change(seller, status: RxStatus.success());
-      await _usecase.saveLogin();
+      await _usecase.saveSellerId(seller.sid);
     });
   }
 }

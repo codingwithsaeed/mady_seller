@@ -15,9 +15,9 @@ class SplashRepositoryImpl implements SplashRepository {
   Future<Either<Failure, bool>> checkLoggin() async {
     try {
       if (!await _networkInfo.isConnected) {
-        return const Left(ServerFailure(Failure.noInternetConnection));
+        return const Left(GeneralFailure(Failure.noInternetConnection));
       }
-      return Right(await _datasource.isLoggedIn());
+      return Right(_datasource.isLoggedIn());
     } on CacheException {
       return const Right(false);
     }

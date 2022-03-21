@@ -5,5 +5,5 @@ import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
 
 abstract class LoginRepository {
   Future<Either<Failure, Seller>> doLogin(Params params);
-  Future<void> saveLogin();
+  Future<void> saveSellerId(String sellerId);
 }

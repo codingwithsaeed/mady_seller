@@ -65,8 +65,8 @@ class MockLoginLocalDatasource extends _i1.Mock
   }
 
   @override
-  _i4.Future<void> saveLogin() =>
-      (super.noSuchMethod(Invocation.method(#saveLogin, []),
+  _i4.Future<void> saveSellerId(String? sellerId) =>
+      (super.noSuchMethod(Invocation.method(#saveSellerId, [sellerId]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
 }

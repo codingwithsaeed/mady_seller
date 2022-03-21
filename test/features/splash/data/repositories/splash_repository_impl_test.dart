@@ -27,11 +27,11 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => false);
-        when(datasource.isLoggedIn()).thenAnswer((_) async => false);
+        when(datasource.isLoggedIn()).thenAnswer((_) => false);
         //act
         final result = await sut.checkLoggin();
         //assert
-        expect(result, const Left(ServerFailure(Failure.noInternetConnection)));
+        expect(result, const Left(GeneralFailure(Failure.noInternetConnection)));
       },
     );
 
@@ -40,7 +40,7 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.isLoggedIn()).thenAnswer((_) async => true);
+        when(datasource.isLoggedIn()).thenAnswer((_) => true);
         //act
         final result = await sut.checkLoggin();
         //assert

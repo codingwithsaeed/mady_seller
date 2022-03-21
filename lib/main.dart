@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mady_seller/core/routes/app_pages.dart';
 import 'package:mady_seller/core/utils/consts.dart' as consts;
 
-void main() => runApp(const MyApp());
+void main() async {
+  await GetStorage.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

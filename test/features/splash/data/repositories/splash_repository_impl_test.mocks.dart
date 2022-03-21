@@ -42,7 +42,6 @@ class MockSplashDatasource extends _i1.Mock implements _i4.SplashDatasource {
   }
 
   @override
-  _i3.Future<bool> isLoggedIn() =>
-      (super.noSuchMethod(Invocation.method(#isLoggedIn, []),
-          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+  bool isLoggedIn() => (super.noSuchMethod(Invocation.method(#isLoggedIn, []),
+      returnValue: false) as bool);
 }

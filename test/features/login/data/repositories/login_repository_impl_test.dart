@@ -68,7 +68,7 @@ void main() {
         //act
         final result = await sut.doLogin(tParams);
         //assert
-        expect(result, const Left(ServerFailure(Failure.noInternetConnection)));
+        expect(result, const Left(GeneralFailure(Failure.noInternetConnection)));
         verify(networkInfo.isConnected);
         verifyNoMoreInteractions(networkInfo);
       },
@@ -100,7 +100,7 @@ void main() {
         //act
         final result = await sut.doLogin(tParams);
         //assert
-        expect(result, const Left(ServerFailure(Failure.notFound)));
+        expect(result, const Left(GeneralFailure(Failure.notFound)));
       },
     );
 
@@ -114,7 +114,7 @@ void main() {
         //act
         final result = await sut.doLogin(tParams);
         //assert
-        expect(result, const Left(ServerFailure(Failure.notFound)));
+        expect(result, const Left(GeneralFailure(Failure.notFound)));
       },
     );
   });

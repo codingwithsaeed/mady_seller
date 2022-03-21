@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
+import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/features/login/presentation/controller/login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
@@ -20,12 +20,11 @@ class LoginPage extends GetView<LoginController> {
   Widget buildBody() {
     controller.addListener((() {
       if (controller.status.isSuccess) {
-        print(controller.state.toString());
-        print('going to main');
+        Get.offNamed(AppRoutes.home);
       }
       if (controller.status.isError) {
         Get.snackbar('خطا', controller.status.errorMessage!,
-            backgroundColor: Colors.red.shade900,
+            backgroundColor: Colors.red.shade700,
             colorText: Colors.white,
             snackPosition: SnackPosition.BOTTOM);
       }

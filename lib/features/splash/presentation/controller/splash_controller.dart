@@ -20,7 +20,7 @@ class SplashController extends GetxController with StateMixin<bool> {
     final result = await _usecase.checkLogin();
 
     result.fold((error) {
-      if(error is ServerFailure) {
+      if(error is GeneralFailure) {
         change(false, status: RxStatus.error(error.message));
       }
     }, (loggedIn) {

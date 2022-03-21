@@ -40,8 +40,8 @@ class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
                   _FakeEither_0<_i5.Failure, _i6.Seller>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i6.Seller>>);
   @override
-  _i4.Future<void> saveLogin() =>
-      (super.noSuchMethod(Invocation.method(#saveLogin, []),
+  _i4.Future<void> saveSellerId(String? sellerId) =>
+      (super.noSuchMethod(Invocation.method(#saveSellerId, [sellerId]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
 }

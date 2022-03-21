@@ -13,7 +13,7 @@ class LoginUsecase {
     return await repository.doLogin(params);
   }
 
-  Future<void> saveLogin() async {
-    return await repository.saveLogin();
+  Future<void> saveSellerId(String sellerId) async {
+    await repository.saveSellerId(sellerId);
   }
 }

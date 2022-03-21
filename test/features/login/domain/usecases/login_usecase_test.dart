@@ -44,11 +44,11 @@ void main() {
       () async {
         //arrange
         when(repository.doLogin(any)).thenAnswer((_) async =>
-            const Left(ServerFailure(Failure.noInternetConnection)));
+            const Left(GeneralFailure(Failure.noInternetConnection)));
         //act
         final result = await sut.doLogin(tParams);
         //assert
-        expect(result, const Left(ServerFailure(Failure.noInternetConnection)));
+        expect(result, const Left(GeneralFailure(Failure.noInternetConnection)));
         verify(repository.doLogin(tParams));
         verifyNoMoreInteractions(repository);
       },

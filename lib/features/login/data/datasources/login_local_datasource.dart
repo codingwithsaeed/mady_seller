@@ -1,17 +1,17 @@
-import 'package:mady_seller/core/cache/cache_provider.dart';
+import 'package:get_storage/get_storage.dart';
 
 abstract class LoginLocalDatasource {
-  ///Sets a true value for LOGIN in SharedPrefrences
-  Future<void> saveLogin();
+  ///Sets a true value for LOGIN in GetStorage
+  Future<void> saveSellerId(String sellerId);
 }
 
 class LoginLocalDatasourceImpl implements LoginLocalDatasource {
-  final CacheProvider _cacheProvider;
+  final GetStorage _storage;
 
-  LoginLocalDatasourceImpl(this._cacheProvider);
+  LoginLocalDatasourceImpl(this._storage);
 
   @override
-  Future<void> saveLogin() async {
-    await _cacheProvider.setBool('LOGIN', true);
+  Future<void> saveSellerId(String sellerId) async {
+     await _storage.write('id', sellerId);
   }
 }
