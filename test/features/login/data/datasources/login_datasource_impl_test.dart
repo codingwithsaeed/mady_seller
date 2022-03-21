@@ -3,7 +3,7 @@ import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/nework/api_provider.dart';
 import 'package:mady_seller/core/nework/params.dart';
 import 'package:mady_seller/core/utils/consts.dart';
-import 'package:mady_seller/features/login/data/datasources/login_datasource.dart';
+import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady_seller/features/login/data/models/seller_model.dart';
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
 import 'package:mockito/annotations.dart';
@@ -14,12 +14,12 @@ import 'package:http/http.dart' as http;
 
 @GenerateMocks([ApiProvider])
 void main() {
-  late LoginDatasourceImpl sut;
+  late LoginRemoteDatasourceImpl sut;
   late MockApiProvider apiProvider;
 
   setUp(() {
     apiProvider = MockApiProvider();
-    sut = LoginDatasourceImpl(apiProvider);
+    sut = LoginRemoteDatasourceImpl(apiProvider);
   });
 
   group('doLogin Test', () {

@@ -31,8 +31,9 @@ class LoginController extends GetxController with StateMixin<Seller> {
       if (error is ServerFailure) {
         change(null, status: RxStatus.error(error.message));
       }
-    }, (seller) {
+    }, (seller) async {
       change(seller, status: RxStatus.success());
+      await _usecase.saveLogin();
     });
   }
 }

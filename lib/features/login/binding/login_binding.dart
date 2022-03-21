@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:mady_seller/core/cache/cache_provider.dart';
 import 'package:mady_seller/core/nework/api_provider.dart';
 import 'package:mady_seller/core/nework/network_info.dart';
-import 'package:mady_seller/features/login/data/datasources/login_datasource.dart';
+import 'package:mady_seller/features/login/data/datasources/login_local_datasource.dart';
+import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady_seller/features/login/data/repositories/login_repository_impl.dart';
 import 'package:mady_seller/features/login/domain/usecases/login_usecase.dart';
 import 'package:mady_seller/features/login/presentation/controller/login_controller.dart';
@@ -10,11 +12,14 @@ class LoginBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => ApiProviderImpl());
-    Get.lazyPut(() => LoginDatasourceImpl(Get.find<ApiProviderImpl>()));
+    Get.lazyPut(() => CacheProviderImpl());
+    Get.lazyPut(() => LoginRemoteDatasourceImpl(Get.find<ApiProviderImpl>()));
+    Get.lazyPut(() => LoginLocalDatasourceImpl(Get.find<CacheProviderImpl>()));
     Get.lazyPut(() => const NetworkInfoImpl());
     Get.lazyPut(
       () => LoginRepositoryImpl(
-        Get.find<LoginDatasourceImpl>(),
+        Get.find<LoginRemoteDatasourceImpl>(),
+        Get.find<LoginLocalDatasourceImpl>(),
         Get.find<NetworkInfoImpl>(),
       ),
     );

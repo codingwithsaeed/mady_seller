@@ -12,4 +12,8 @@ class LoginUsecase {
   Future<Either<Failure, Seller>> doLogin(Params params) async {
     return await repository.doLogin(params);
   }
+
+  Future<void> saveLogin() async {
+    return await repository.saveLogin();
+  }
 }

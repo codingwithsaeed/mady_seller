@@ -4,16 +4,16 @@ import 'package:mady_seller/core/nework/api_provider.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/features/login/data/models/seller_model.dart';
 
-abstract class LoginDatasource {
+abstract class LoginRemoteDatasource {
   ///Performs a POST request to url
   ///returns a [ServerException] on all errors
   Future<SellerModel> doLogin(Map<String, dynamic> params);
 }
 
-class LoginDatasourceImpl implements LoginDatasource {
+class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
   final ApiProvider _apiProvider;
 
-  LoginDatasourceImpl(this._apiProvider);
+  LoginRemoteDatasourceImpl(this._apiProvider);
 
   @override
   Future<SellerModel> doLogin(Map<String, dynamic> params) async {

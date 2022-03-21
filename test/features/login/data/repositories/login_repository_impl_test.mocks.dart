@@ -5,7 +5,9 @@
 import 'dart:async' as _i4;
 
 import 'package:mady_seller/core/nework/network_info.dart' as _i3;
-import 'package:mady_seller/features/login/data/datasources/login_datasource.dart'
+import 'package:mady_seller/features/login/data/datasources/login_local_datasource.dart'
+    as _i6;
+import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart'
     as _i5;
 import 'package:mady_seller/features/login/data/models/seller_model.dart'
     as _i2;
@@ -37,11 +39,12 @@ class MockNetworkInfo extends _i1.Mock implements _i3.NetworkInfo {
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }
 
-/// A class which mocks [LoginDatasource].
+/// A class which mocks [LoginRemoteDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginDatasource extends _i1.Mock implements _i5.LoginDatasource {
-  MockLoginDatasource() {
+class MockLoginRemoteDatasource extends _i1.Mock
+    implements _i5.LoginRemoteDatasource {
+  MockLoginRemoteDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -50,4 +53,20 @@ class MockLoginDatasource extends _i1.Mock implements _i5.LoginDatasource {
       (super.noSuchMethod(Invocation.method(#doLogin, [params]),
               returnValue: Future<_i2.SellerModel>.value(_FakeSellerModel_0()))
           as _i4.Future<_i2.SellerModel>);
+}
+
+/// A class which mocks [LoginLocalDatasource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoginLocalDatasource extends _i1.Mock
+    implements _i6.LoginLocalDatasource {
+  MockLoginLocalDatasource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> saveLogin() =>
+      (super.noSuchMethod(Invocation.method(#saveLogin, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
 }

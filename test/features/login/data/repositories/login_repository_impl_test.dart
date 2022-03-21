@@ -6,7 +6,8 @@ import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
 import 'package:mady_seller/core/nework/network_info.dart';
 import 'package:mady_seller/core/nework/params.dart';
-import 'package:mady_seller/features/login/data/datasources/login_datasource.dart';
+import 'package:mady_seller/features/login/data/datasources/login_local_datasource.dart';
+import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady_seller/features/login/data/models/seller_model.dart';
 import 'package:mady_seller/features/login/data/repositories/login_repository_impl.dart';
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
@@ -15,16 +16,18 @@ import 'package:mockito/mockito.dart';
 import '../../../../fixtures/fixture_reader.dart';
 import 'login_repository_impl_test.mocks.dart';
 
-@GenerateMocks([NetworkInfo, LoginDatasource])
+@GenerateMocks([NetworkInfo, LoginRemoteDatasource, LoginLocalDatasource])
 void main() {
   late LoginRepositoryImpl sut;
   late MockNetworkInfo networkInfo;
-  late MockLoginDatasource datasource;
+  late MockLoginRemoteDatasource remote;
+  late MockLoginLocalDatasource local;
 
   setUp(() {
     networkInfo = MockNetworkInfo();
-    datasource = MockLoginDatasource();
-    sut = LoginRepositoryImpl(datasource, networkInfo);
+    remote = MockLoginRemoteDatasource();
+    local = MockLoginLocalDatasource();
+    sut = LoginRepositoryImpl(remote, local, networkInfo);
   });
 
   group('Testing doLogin', () {
@@ -60,7 +63,7 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => false);
-        when(datasource.doLogin(any))
+        when(remote.doLogin(any))
             .thenAnswer((_) async => SellerModel.fromJson(jsonDecode(tJson1)));
         //act
         final result = await sut.doLogin(tParams);
@@ -76,14 +79,14 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.doLogin(any))
+        when(remote.doLogin(any))
             .thenAnswer((_) async => SellerModel.fromJson(jsonDecode(tJson1)));
         //act
         final result = await sut.doLogin(tParams);
         //assert
         expect(result, Right(tSellerModel1.data!));
-        verify(datasource.doLogin(tParams.param));
-        verifyNoMoreInteractions(datasource);
+        verify(remote.doLogin(tParams.param));
+        verifyNoMoreInteractions(remote);
       },
     );
 
@@ -92,7 +95,7 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.doLogin(any))
+        when(remote.doLogin(any))
             .thenAnswer((_) async => SellerModel.fromJson(jsonDecode(tJson2)));
         //act
         final result = await sut.doLogin(tParams);
@@ -106,7 +109,7 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.doLogin(any))
+        when(remote.doLogin(any))
             .thenThrow(const ServerException(Failure.notFound));
         //act
         final result = await sut.doLogin(tParams);
