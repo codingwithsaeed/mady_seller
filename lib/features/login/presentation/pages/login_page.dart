@@ -11,7 +11,6 @@ class LoginPage extends GetView<LoginController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('اپ فروشندگان'),
-        centerTitle: true,
       ),
       body: buildBody(),
     );
@@ -20,7 +19,7 @@ class LoginPage extends GetView<LoginController> {
   Widget buildBody() {
     controller.addListener((() {
       if (controller.status.isSuccess) {
-        Get.offNamed(AppRoutes.home);
+        Get.offNamed(AppRoutes.offers);
       }
       if (controller.status.isError) {
         Get.snackbar('خطا', controller.status.errorMessage!,

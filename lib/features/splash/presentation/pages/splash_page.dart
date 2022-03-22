@@ -11,7 +11,7 @@ class SplashPage extends GetWidget<SplashController> {
     controller.addListener(() {
       if (controller.status.isSuccess) {
         controller.state!
-            ? Get.offNamed(AppRoutes.home)
+            ? Get.offNamed(AppRoutes.offers)
             : Get.offNamed(AppRoutes.login);
       }
       if (controller.status.isError) {
