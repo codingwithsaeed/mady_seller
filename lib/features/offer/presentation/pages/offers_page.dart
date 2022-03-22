@@ -31,10 +31,34 @@ class OffersPage extends GetView<OffersController> {
           PopupMenuButton(
               icon: const Icon(Icons.filter_alt_rounded, color: Colors.white),
               itemBuilder: (context) => [
-                    const PopupMenuItem(child: Text('همه')),
-                    const PopupMenuItem(child: Text('فعال')),
-                    const PopupMenuItem(child: Text('پیش نمایش')),
-                    const PopupMenuItem(child: Text('تمام شده')),
+                    PopupMenuItem(
+                      child: const Text('همه'),
+                      onTap: () {
+                        controller.filterType = FilterType.all;
+                        controller.filterOffers();
+                      },
+                    ),
+                    PopupMenuItem(
+                      child: const Text('فعال'),
+                      onTap: () {
+                        controller.filterType = FilterType.active;
+                        controller.filterOffers();
+                      },
+                    ),
+                    PopupMenuItem(
+                      child: const Text('پیش نمایش'),
+                      onTap: () {
+                        controller.filterType = FilterType.preview;
+                        controller.filterOffers();
+                      },
+                    ),
+                    PopupMenuItem(
+                      child: const Text('تمام شده'),
+                      onTap: () {
+                        controller.filterType = FilterType.deactive;
+                        controller.filterOffers();
+                      },
+                    ),
                   ]),
           IconButton(
             onPressed: () async {
@@ -85,6 +109,18 @@ class ListItem extends StatelessWidget {
     required this.offer,
   }) : super(key: key);
 
+  String bannerTitle() {
+    if (offer.status == '0') return 'پیش نمایش';
+    if (offer.status == '1') return 'فعال';
+    return 'تمام شده';
+  }
+
+  Color bannerColor() {
+    if (offer.status == '0') return Colors.yellow.shade800;
+    if (offer.status == '1') return Colors.green.shade800;
+    return Colors.red.shade800;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -94,20 +130,27 @@ class ListItem extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       elevation: 10.0,
       shadowColor: Colors.yellow,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          CircleAvatar(
-            radius: 70,
-            backgroundImage: NetworkImage(offer.picture),
-          ),
-          Text(
-            offer.content,
-            maxLines: 1,
-            softWrap: false,
-          ),
-        ],
+      child: Banner(
+        location: BannerLocation.topEnd,
+        message: bannerTitle(),
+        color: bannerColor(),
+        textStyle: const TextStyle(
+            fontFamily: 'Vazir', fontSize: 9, color: Colors.white),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CircleAvatar(
+              radius: 70,
+              backgroundImage: NetworkImage(offer.picture),
+            ),
+            Text(
+              offer.content,
+              maxLines: 1,
+              softWrap: false,
+            ),
+          ],
+        ),
       ),
     );
   }
