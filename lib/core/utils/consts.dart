@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 final themeData = ThemeData(
   primarySwatch: materialColor,
   appBarTheme: const AppBarTheme(
+    
     shadowColor: Colors.black,
     centerTitle: true,
     titleTextStyle: TextStyle(
