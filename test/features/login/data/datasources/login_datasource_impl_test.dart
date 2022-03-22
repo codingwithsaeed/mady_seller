@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
+import 'package:mady_seller/core/errors/failure.dart';
 import 'package:mady_seller/core/nework/api_provider.dart';
 import 'package:mady_seller/core/nework/params.dart';
 import 'package:mady_seller/core/utils/consts.dart';
@@ -96,7 +97,7 @@ void main() {
       () async {
         //arrange
         when(apiProvider.post(any, params: anyNamed('params')))
-            .thenAnswer((_) async => http.Response('', 404));
+            .thenThrow(const ServerException(Failure.notFound));
         //act
         final result = sut.doLogin;
         //assert

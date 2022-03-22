@@ -17,13 +17,9 @@ class NetworkInfoImpl implements NetworkInfo {
         currentCheckUrl,
         params: {'action': 'check_online'},
       );
-
-      if (result.statusCode == 200) {
-        if (jsonDecode(result.body)['success'] == 1) return true;
-        return false;
-      }
+      if (jsonDecode(result.body)['success'] == 1) return true;
       return false;
-    } on Exception{
+    } on Exception {
       return false;
     }
   }

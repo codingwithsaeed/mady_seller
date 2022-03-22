@@ -18,9 +18,6 @@ class LoginRemoteDatasourceImpl implements LoginRemoteDatasource {
   @override
   Future<SellerModel> doLogin(Map<String, dynamic> params) async {
     final result = await _apiProvider.post(currentDataUrl, params: params);
-    if (result.statusCode == 200) {
-      return SellerModel.fromJson(jsonDecode(result.body));
-    }
-    throw ServerException('خطای سرور ${result.statusCode}');
+    return SellerModel.fromJson(jsonDecode(result.body));
   }
 }

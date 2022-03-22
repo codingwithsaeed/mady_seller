@@ -20,14 +20,12 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<Either<Failure, Seller>> doLogin(Params params) async {
     try {
-      if (!await _networkInfo.isConnected) {
+      if (!await _networkInfo.isConnected)
         return const Left(GeneralFailure(Failure.noInternetConnection));
-      }
 
       final result = await _remote.doLogin(params.param);
 
       if (result.success == 1) return Right(result.data!);
-
       return const Left(GeneralFailure(Failure.notFound));
     } on ServerException catch (e) {
       return Left(GeneralFailure(e.message));
