@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mady_seller/features/offer/data/models/get_offers_model.dart';
+import 'package:mady_seller/features/offer/data/models/get_offers/get_offers_model.dart';
 import 'package:mady_seller/features/offer/domain/entities/offer/offer.dart';
 
 import '../../../../fixtures/fixture_reader.dart';

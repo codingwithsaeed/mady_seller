@@ -6,7 +6,7 @@ import 'package:mady_seller/core/errors/failure.dart';
 import 'package:mady_seller/core/nework/network_info.dart';
 import 'package:mady_seller/core/nework/params.dart';
 import 'package:mady_seller/features/offer/data/datasources/get_offers_remote_datasource.dart';
-import 'package:mady_seller/features/offer/data/models/get_offers_model.dart';
+import 'package:mady_seller/features/offer/data/models/get_offers/get_offers_model.dart';
 import 'package:mady_seller/features/offer/data/repositories/get_offers_repository_impl.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
