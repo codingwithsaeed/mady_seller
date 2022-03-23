@@ -7,7 +7,5 @@ class GetSellerUsecase {
 
   GetSellerUsecase(this.repository);
 
-  Either<Failure, String> call() {
-    return repository.getSellerId();
-  }
+  Either<Failure, String> call() => repository.getSellerId();
 }

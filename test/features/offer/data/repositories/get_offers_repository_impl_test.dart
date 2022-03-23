@@ -8,7 +8,6 @@ import 'package:mady_seller/core/nework/params.dart';
 import 'package:mady_seller/features/offer/data/datasources/get_offers_remote_datasource.dart';
 import 'package:mady_seller/features/offer/data/models/get_offers_model.dart';
 import 'package:mady_seller/features/offer/data/repositories/get_offers_repository_impl.dart';
-import 'package:mady_seller/features/offer/domain/entities/offer/offer.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import '../../../../fixtures/fixture_reader.dart';

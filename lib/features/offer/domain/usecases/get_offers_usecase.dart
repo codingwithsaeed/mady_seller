@@ -9,7 +9,6 @@ class GetOffersUsecase {
 
   GetOffersUsecase(this._repository);
 
-  Future<Either<Failure, List<Offer>>> call(Params params) async {
-    return await _repository.getOffers(params);
-  }
+  Future<Either<Failure, List<Offer>>> call(Params params) async =>
+      await _repository.getOffers(params);
 }

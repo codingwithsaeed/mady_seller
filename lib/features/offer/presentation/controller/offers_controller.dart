@@ -1,5 +1,3 @@
-// ignore_for_file: curly_braces_in_flow_control_structures
-
 import 'dart:developer';
 
 import 'package:get/get.dart';
@@ -71,9 +69,7 @@ class OffersController extends GetxController with StateMixin<List<Offer>> {
   void updateState(List<Offer> list, String matcher) {
     List<Offer> filtedList = [];
     for (var element in lastOffers) {
-      if (element.status == matcher) {
-        filtedList.add(element);
-      }
+      if (element.status == matcher) filtedList.add(element);
     }
     filtedList.isEmpty
         ? change(filtedList, status: RxStatus.empty())
