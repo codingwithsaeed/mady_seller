@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: consts.localizationDelegate,
         locale: const Locale('fa'),
         theme: consts.themeData,
-        defaultTransition: Transition.leftToRight,
-        transitionDuration: const Duration(milliseconds: 700),
+        defaultTransition: Transition.cupertino,
+        transitionDuration: const Duration(milliseconds: 500),
         initialRoute: AppPages.initialRoute,
         getPages: AppPages.pages,
       );

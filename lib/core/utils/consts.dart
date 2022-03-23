@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 
 final themeData = ThemeData(
   primarySwatch: materialColor,
   appBarTheme: const AppBarTheme(
-    
     shadowColor: Colors.black,
     centerTitle: true,
     titleTextStyle: TextStyle(
@@ -43,3 +43,50 @@ const _localCheckUrl = 'http://192.168.1.2/mady/check_online.php';
 const _onlineCheckUrl = 'https://codingwithsaeed.ir/api/mady/check_online.php';
 final currentDataUrl = Uri.parse(_localUrl);
 final currentCheckUrl = Uri.parse(_localCheckUrl);
+
+const List<String> _pocketTitles = [
+  "یک روزه، یک آگهی",
+  "هفت روزه، سه آگهی",
+  "یک ماهه، ده آگهی",
+  "سه ماهه، پنجاه آگهی",
+  "شش ماهه، صدوبیست آگهی",
+  "یک روزه ويژه، یک آگهی",
+  "هفت روزه ويژه، دو آگهی",
+  "یک ماهه ويژه، پنج آگهی",
+  "سه ماهه ويژه، پانزده آگهی",
+  "شش ماهه ويژه، سی آگهی"
+];
+
+List<String> get pocketTitles => _pocketTitles;
+
+const List<String> _offerTypesTitle = ["معمولی", "ویژه"];
+
+List<String> get offerTypesTitle => _offerTypesTitle;
+
+final List<DropdownMenuItem<String>> offerTypes = [
+  DropdownMenuItem(child: Text(offerTypesTitle[0]), value: "0"),
+  DropdownMenuItem(child: Text(offerTypesTitle[1]), value: "1"),
+];
+
+const List<String> _offerStatusTitle = ["پیش نمایش", "انتشار"];
+
+List<String> get offerStatusTitle => _offerStatusTitle;
+
+final List<DropdownMenuItem<String>> offerStatus = [
+  DropdownMenuItem(child: Text(offerStatusTitle[0]), value: "0"),
+  DropdownMenuItem(child: Text(offerStatusTitle[1]), value: "1"),
+];
+
+void showErrorSnackbar(String message) {
+  Get.snackbar('خطا', message,
+      backgroundColor: Colors.red.shade700,
+      colorText: Colors.white,
+      snackPosition: SnackPosition.BOTTOM);
+}
+
+void showGreenSnackbar(String message) {
+  Get.snackbar('موفق', message,
+      backgroundColor: Colors.green.shade700,
+      colorText: Colors.white,
+      snackPosition: SnackPosition.BOTTOM);
+}

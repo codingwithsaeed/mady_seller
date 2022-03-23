@@ -10,4 +10,7 @@ class AddOfferUsecase {
 
   Future<Either<Failure, bool>> call(Params params) async =>
       await _repository.addOffer(params);
+
+  Future<Either<Failure, String>> uploadPicture(Params params) async =>
+      await _repository.uploadPicture(params);    
 }

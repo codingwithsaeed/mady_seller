@@ -30,4 +30,17 @@ class AddOfferRepositoryImpl implements AddOfferRepository {
       return Left(GeneralFailure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> uploadPicture(Params params) async {
+     if (!await _networkInfo.isConnected)
+      return const Left(GeneralFailure(Failure.noInternetConnection));
+
+    try {
+      final result = await _dataSource.uploadPicture(params.param);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(GeneralFailure(e.message));
+    }
+  }
 }

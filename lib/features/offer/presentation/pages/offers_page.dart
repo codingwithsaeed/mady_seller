@@ -91,7 +91,10 @@ class OffersPage extends GetView<OffersController> {
             onEmpty: const Center(child: Text('هیچ آفری ندارید!'))),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          final result = await Get.toNamed(AppRoutes.addOffer);
+          if (result != null && (result as bool)) controller.getSellerId();
+        },
         backgroundColor: Colors.yellow.shade800,
         child: const Icon(
           Icons.add,
