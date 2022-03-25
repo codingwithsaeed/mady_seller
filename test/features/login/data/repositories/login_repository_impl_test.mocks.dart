@@ -4,7 +4,7 @@
 
 import 'dart:async' as _i4;
 
-import 'package:mady_seller/core/nework/network_info.dart' as _i3;
+import 'package:mady_seller/core/network/network_info.dart' as _i3;
 import 'package:mady_seller/features/login/data/datasources/login_local_datasource.dart'
     as _i6;
 import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart'

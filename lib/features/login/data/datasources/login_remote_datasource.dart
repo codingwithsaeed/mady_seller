@@ -1,6 +1,7 @@
 import 'dart:convert';
+
 import 'package:mady_seller/core/errors/exceptions.dart';
-import 'package:mady_seller/core/nework/api_provider.dart';
+import 'package:mady_seller/core/network/api_provider.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/features/login/data/models/seller_model.dart';
 

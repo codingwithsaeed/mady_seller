@@ -1,12 +1,11 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/core/utils/utils.dart';
-import 'package:mady_seller/features/offer/presentation/controller/add_offer_controller.dart';
+import 'package:mady_seller/features/offer/presentation/controllers/add_offer_controller.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 import '../../../../core/x/x_widgets.dart';
@@ -19,6 +18,7 @@ class AddOfferPage extends GetView<AddOfferController> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 10,
         shadowColor: Colors.yellow,
         shape: const RoundedRectangleBorder(

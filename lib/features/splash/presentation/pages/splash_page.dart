@@ -5,7 +5,6 @@ import 'package:mady_seller/features/splash/presentation/controller/splash_contr
 
 class SplashPage extends GetWidget<SplashController> {
   const SplashPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     controller.addListener(() {

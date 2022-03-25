@@ -1,12 +1,12 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
+import 'package:dartz/dartz.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
+import 'package:mady_seller/core/errors/failure.dart';
+import 'package:mady_seller/core/network/network_info.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/features/offer/data/datasources/get_offers_remote_datasource.dart';
 import 'package:mady_seller/features/offer/domain/entities/offer/offer.dart';
-import 'package:mady_seller/core/nework/params.dart';
-import 'package:mady_seller/core/errors/failure.dart';
-import 'package:dartz/dartz.dart';
 import 'package:mady_seller/features/offer/domain/repositories/get_offers_repository.dart';
 
 class GetOffersRepositoryImpl implements GetOffersRepository {

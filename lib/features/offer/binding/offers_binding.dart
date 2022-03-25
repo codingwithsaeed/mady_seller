@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mady_seller/core/nework/api_provider.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
+import 'package:mady_seller/core/network/api_provider.dart';
+import 'package:mady_seller/core/network/network_info.dart';
 import 'package:mady_seller/features/offer/data/datasources/get_offers_remote_datasource.dart';
 import 'package:mady_seller/features/offer/data/datasources/get_seller_local_datasource.dart';
 import 'package:mady_seller/features/offer/data/repositories/get_offers_repository_impl.dart';
 import 'package:mady_seller/features/offer/data/repositories/get_seller_repository_impl.dart';
 import 'package:mady_seller/features/offer/domain/usecases/get_offers_usecase.dart';
 import 'package:mady_seller/features/offer/domain/usecases/get_seller_usecase.dart';
-import 'package:mady_seller/features/offer/presentation/controller/offers_controller.dart';
+import 'package:mady_seller/features/offer/presentation/controllers/offers_controller.dart';
 
 class OffersBinding extends Bindings {
   @override

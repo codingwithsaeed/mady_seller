@@ -4,13 +4,14 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/network_info.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/features/offer/data/datasources/add_offer_remote_datasource.dart';
 import 'package:mady_seller/features/offer/data/models/add_offer/add_offer_model.dart';
 import 'package:mady_seller/features/offer/data/repositories/add_offer_repository_impl.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import '../../../../fixtures/fixture_reader.dart';
 import 'add_offer_repository_impl_test.mocks.dart';
 
@@ -63,7 +64,8 @@ void main() {
         //assert
         expect(
           result,
-          const Left(GeneralFailure('تاریخ ثبت بسته نمیتواند از تاریخ فعلی کمتر باشد')),
+          const Left(GeneralFailure(
+              'تاریخ ثبت بسته نمیتواند از تاریخ فعلی کمتر باشد')),
         );
       },
     );
@@ -107,7 +109,8 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.addOffer(any)).thenThrow(const ServerException(Failure.notFound));
+        when(datasource.addOffer(any))
+            .thenThrow(const ServerException(Failure.notFound));
         //act
         final result = await sut.addOffer(tParams);
         //assert

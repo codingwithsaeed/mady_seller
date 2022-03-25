@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:mady_seller/core/nework/api_provider.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
+import 'package:mady_seller/core/network/api_provider.dart';
+import 'package:mady_seller/core/network/network_info.dart';
 import 'package:mady_seller/features/login/data/datasources/login_local_datasource.dart';
 import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady_seller/features/login/data/repositories/login_repository_impl.dart';

@@ -6,7 +6,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mady_seller/core/errors/failure.dart' as _i5;
-import 'package:mady_seller/core/nework/params.dart' as _i7;
+import 'package:mady_seller/core/network/params.dart' as _i7;
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart'
     as _i6;
 import 'package:mady_seller/features/login/domain/repositories/login_repository.dart'

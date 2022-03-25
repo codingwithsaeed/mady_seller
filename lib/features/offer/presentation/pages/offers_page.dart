@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/features/offer/domain/entities/offer/offer.dart';
-import 'package:mady_seller/features/offer/presentation/controller/offers_controller.dart';
+import 'package:mady_seller/features/offer/presentation/controllers/offers_controller.dart';
 
 class OffersPage extends GetView<OffersController> {
   const OffersPage({Key? key}) : super(key: key);
@@ -62,8 +62,7 @@ class OffersPage extends GetView<OffersController> {
                   ]),
           IconButton(
             onPressed: () async {
-              // await GetStorage().remove('id');
-              await controller.getSellerId();
+              Get.toNamed(AppRoutes.profile);
             },
             icon: const Icon(Icons.person_rounded, color: Colors.white),
           ),
@@ -80,7 +79,13 @@ class OffersPage extends GetView<OffersController> {
                             crossAxisCount: 2,
                             crossAxisSpacing: 2.0,
                             mainAxisSpacing: 2.0),
-                    itemBuilder: ((_, index) => ListItem(offer: state![index])),
+                    itemBuilder: ((_, index) => ListItem(
+                          offer: state![index],
+                          onTap: () => Get.toNamed(
+                            AppRoutes.singleOffer,
+                            arguments: state[index],
+                          ),
+                        )),
                     itemCount: state!.length,
                   ),
                 ),
@@ -107,8 +112,10 @@ class OffersPage extends GetView<OffersController> {
 
 class ListItem extends StatelessWidget {
   final Offer offer;
+  final VoidCallback onTap;
   const ListItem({
     Key? key,
+    required this.onTap,
     required this.offer,
   }) : super(key: key);
 
@@ -126,33 +133,37 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      borderOnForeground: true,
-      clipBehavior: Clip.antiAlias,
-      margin: const EdgeInsets.all(4.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      elevation: 10.0,
-      shadowColor: Colors.yellow,
-      child: Banner(
-        location: BannerLocation.topEnd,
-        message: bannerTitle(),
-        color: bannerColor(),
-        textStyle: const TextStyle(
-            fontFamily: 'Vazir', fontSize: 9, color: Colors.white),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CircleAvatar(
-              radius: 70,
-              backgroundImage: NetworkImage(offer.picture),
-            ),
-            Text(
-              offer.content,
-              maxLines: 1,
-              softWrap: false,
-            ),
-          ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        borderOnForeground: true,
+        clipBehavior: Clip.antiAlias,
+        margin: const EdgeInsets.all(4.0),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        elevation: 10.0,
+        shadowColor: Colors.yellow,
+        child: Banner(
+          location: BannerLocation.topEnd,
+          message: bannerTitle(),
+          color: bannerColor(),
+          textStyle: const TextStyle(
+              fontFamily: 'Vazir', fontSize: 9, color: Colors.white),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CircleAvatar(
+                radius: 70,
+                backgroundImage: NetworkImage(offer.picture!),
+              ),
+              Text(
+                offer.content!,
+                maxLines: 1,
+                softWrap: false,
+              ),
+            ],
+          ),
         ),
       ),
     );

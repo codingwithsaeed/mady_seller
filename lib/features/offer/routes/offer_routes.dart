@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/features/offer/binding/add_offer_binding.dart';
 import 'package:mady_seller/features/offer/binding/offers_binding.dart';
+import 'package:mady_seller/features/offer/binding/single_offer_binding.dart';
 import 'package:mady_seller/features/offer/presentation/pages/add_offer_page.dart';
 import 'package:mady_seller/features/offer/presentation/pages/offers_page.dart';
+import 'package:mady_seller/features/offer/presentation/pages/single_offer_page.dart';
 
 List<GetPage> offerRoutes = [
   GetPage(
@@ -15,5 +17,10 @@ List<GetPage> offerRoutes = [
     name: AppRoutes.addOffer,
     page: () => const AddOfferPage(),
     binding: AddOfferBinding(),
+  ),
+  GetPage(
+    name: AppRoutes.singleOffer,
+    page: () => const SingleOfferPage(),
+    binding: SingleOfferBinding(),
   ),
 ];

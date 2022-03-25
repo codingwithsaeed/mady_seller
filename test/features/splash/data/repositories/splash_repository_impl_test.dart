@@ -2,11 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
+import 'package:mady_seller/core/network/network_info.dart';
 import 'package:mady_seller/features/splash/data/datasources/splash_datasource.dart';
 import 'package:mady_seller/features/splash/data/repositories/splash_repository_impl.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'splash_repository_impl_test.mocks.dart';
 
 @GenerateMocks([NetworkInfo, SplashDatasource])
@@ -31,7 +32,8 @@ void main() {
         //act
         final result = await sut.checkLoggin();
         //assert
-        expect(result, const Left(GeneralFailure(Failure.noInternetConnection)));
+        expect(
+            result, const Left(GeneralFailure(Failure.noInternetConnection)));
       },
     );
 
@@ -53,7 +55,8 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.isLoggedIn()).thenThrow(const CacheException(Failure.notFound));
+        when(datasource.isLoggedIn())
+            .thenThrow(const CacheException(Failure.notFound));
         //act
         final result = await sut.checkLoggin();
         //assert

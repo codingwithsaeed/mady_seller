@@ -1,17 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/api_provider.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/api_provider.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady_seller/features/login/data/models/seller_model.dart';
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import '../../../../fixtures/fixture_reader.dart';
 import 'login_datasource_impl_test.mocks.dart';
-import 'package:http/http.dart' as http;
 
 @GenerateMocks([ApiProvider])
 void main() {

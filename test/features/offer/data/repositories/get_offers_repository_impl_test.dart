@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/network_info.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/features/offer/data/datasources/get_offers_remote_datasource.dart';
 import 'package:mady_seller/features/offer/data/models/get_offers/get_offers_model.dart';
 import 'package:mady_seller/features/offer/data/repositories/get_offers_repository_impl.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import '../../../../fixtures/fixture_reader.dart';
 import 'get_offers_repository_impl_test.mocks.dart';
 
@@ -34,7 +35,8 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => false);
-        when(datasource.getOffers(any)).thenAnswer((_) async => tOffersModel2.offers);
+        when(datasource.getOffers(any))
+            .thenAnswer((_) async => tOffersModel2.offers);
         //act
         final result = await sut.getOffers(tParams);
         //assert
@@ -50,7 +52,8 @@ void main() {
       () async {
         //arrange
         when(networkInfo.isConnected).thenAnswer((_) async => true);
-        when(datasource.getOffers(any)).thenAnswer((_) async => tOffersModel2.offers);
+        when(datasource.getOffers(any))
+            .thenAnswer((_) async => tOffersModel2.offers);
         //act
         final result = await sut.getOffers(tParams);
         //assert

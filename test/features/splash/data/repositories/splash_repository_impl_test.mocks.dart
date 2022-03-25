@@ -4,7 +4,7 @@
 
 import 'dart:async' as _i3;
 
-import 'package:mady_seller/core/nework/network_info.dart' as _i2;
+import 'package:mady_seller/core/network/network_info.dart' as _i2;
 import 'package:mady_seller/features/splash/data/datasources/splash_datasource.dart'
     as _i4;
 import 'package:mockito/mockito.dart' as _i1;

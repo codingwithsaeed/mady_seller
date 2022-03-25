@@ -4,7 +4,7 @@
 
 import 'dart:async' as _i4;
 
-import 'package:mady_seller/core/nework/network_info.dart' as _i3;
+import 'package:mady_seller/core/network/network_info.dart' as _i3;
 import 'package:mady_seller/features/offer/data/datasources/add_offer_remote_datasource.dart'
     as _i5;
 import 'package:mady_seller/features/offer/data/models/add_offer/add_offer_model.dart'
@@ -52,4 +52,8 @@ class MockAddOfferRemoteDataSource extends _i1.Mock
               returnValue:
                   Future<_i2.AddOfferModel>.value(_FakeAddOfferModel_0()))
           as _i4.Future<_i2.AddOfferModel>);
+  @override
+  _i4.Future<String> uploadPicture(Map<String, dynamic>? params) =>
+      (super.noSuchMethod(Invocation.method(#uploadPicture, [params]),
+          returnValue: Future<String>.value('')) as _i4.Future<String>);
 }

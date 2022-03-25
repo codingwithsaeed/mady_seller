@@ -9,7 +9,7 @@ import '../../../../fixtures/fixture_reader.dart';
 void main() {
   group('getOffersModel FromJSON', () {
     final tJson = fixture('get_offers.json');
-    const tOffers = <Offer>[
+    var tOffers = <Offer>[
       Offer(
           oid: "5",
           content:
@@ -52,7 +52,7 @@ void main() {
           status: "2",
           isSpecial: "0")
     ];
-    const tOffersModel = GetOffersModel(offers: tOffers);
+    var tOffersModel = GetOffersModel(offers: tOffers);
     test(
       "Should return a solid [List<Offer>] value",
       () async {

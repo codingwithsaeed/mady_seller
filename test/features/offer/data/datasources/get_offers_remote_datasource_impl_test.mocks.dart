@@ -5,7 +5,7 @@
 import 'dart:async' as _i4;
 
 import 'package:http/http.dart' as _i2;
-import 'package:mady_seller/core/nework/api_provider.dart' as _i3;
+import 'package:mady_seller/core/network/api_provider.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

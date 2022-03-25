@@ -6,7 +6,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mady_seller/core/errors/failure.dart' as _i5;
-import 'package:mady_seller/core/nework/params.dart' as _i6;
+import 'package:mady_seller/core/network/params.dart' as _i6;
 import 'package:mady_seller/features/offer/domain/repositories/add_offer_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
@@ -32,6 +32,13 @@ class MockAddOfferRepository extends _i1.Mock
     _i1.throwOnMissingStub(this);
   }
 
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, String>> uploadPicture(
+          _i6.Params? params) =>
+      (super.noSuchMethod(Invocation.method(#uploadPicture, [params]),
+              returnValue: Future<_i2.Either<_i5.Failure, String>>.value(
+                  _FakeEither_0<_i5.Failure, String>()))
+          as _i4.Future<_i2.Either<_i5.Failure, String>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, bool>> addOffer(_i6.Params? params) =>
       (super.noSuchMethod(Invocation.method(#addOffer, [params]),

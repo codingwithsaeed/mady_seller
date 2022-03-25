@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/features/offer/domain/entities/offer/offer.dart';
 import 'package:mady_seller/features/offer/domain/repositories/get_offers_repository.dart';
 import 'package:mady_seller/features/offer/domain/usecases/get_offers_usecase.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'get_offers_usecase_test.mocks.dart';
 
 @GenerateMocks([GetOffersRepository])
@@ -22,7 +23,7 @@ void main() {
   group('testing getSellerId', () {
     const tParams = Params({'action': 'get_offers', 'sid': '9'});
 
-    const tOffers = <Offer>[
+    var tOffers = <Offer>[
       Offer(
         oid: "5",
         content:
@@ -56,11 +57,11 @@ void main() {
       "Should return a List of offers if repository return it",
       () async {
         //arrange
-        when(repository.getOffers(any)).thenAnswer((_) async => const Right(tOffers));
+        when(repository.getOffers(any)).thenAnswer((_) async => Right(tOffers));
         //act
         final result = await sut(tParams);
         //assert
-        expect(result, const Right(tOffers));
+        expect(result, Right(tOffers));
       },
     );
   });

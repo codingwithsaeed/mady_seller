@@ -56,8 +56,15 @@ const List<String> _pocketTitles = [
   "سه ماهه ويژه، پانزده آگهی",
   "شش ماهه ويژه، سی آگهی"
 ];
-
 List<String> get pocketTitles => _pocketTitles;
+
+const List<String> _pocketStatus = [
+  "پیش نمایش",
+  "فعال",
+  "تمام شده",
+];
+
+List<String> get pocketStatuses => _pocketStatus;
 
 const List<String> _offerTypesTitle = ["معمولی", "ویژه"];
 

@@ -1,8 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:dartz/dartz.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/network_info.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/features/offer/data/datasources/add_offer_remote_datasource.dart';
 import 'package:mady_seller/features/offer/domain/repositories/add_offer_repository.dart';
 
@@ -33,7 +33,7 @@ class AddOfferRepositoryImpl implements AddOfferRepository {
 
   @override
   Future<Either<Failure, String>> uploadPicture(Params params) async {
-     if (!await _networkInfo.isConnected)
+    if (!await _networkInfo.isConnected)
       return const Left(GeneralFailure(Failure.noInternetConnection));
 
     try {

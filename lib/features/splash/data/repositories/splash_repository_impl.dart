@@ -1,7 +1,7 @@
+import 'package:dartz/dartz.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:dartz/dartz.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
+import 'package:mady_seller/core/network/network_info.dart';
 import 'package:mady_seller/features/splash/data/datasources/splash_datasource.dart';
 import 'package:mady_seller/features/splash/domain/repositories/splash_repository.dart';
 

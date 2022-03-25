@@ -4,8 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/network_info.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/network_info.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/features/login/data/datasources/login_local_datasource.dart';
 import 'package:mady_seller/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:mady_seller/features/login/data/models/seller_model.dart';
@@ -13,6 +13,7 @@ import 'package:mady_seller/features/login/data/repositories/login_repository_im
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import '../../../../fixtures/fixture_reader.dart';
 import 'login_repository_impl_test.mocks.dart';
 
@@ -68,7 +69,8 @@ void main() {
         //act
         final result = await sut.doLogin(tParams);
         //assert
-        expect(result, const Left(GeneralFailure(Failure.noInternetConnection)));
+        expect(
+            result, const Left(GeneralFailure(Failure.noInternetConnection)));
         verify(networkInfo.isConnected);
         verifyNoMoreInteractions(networkInfo);
       },

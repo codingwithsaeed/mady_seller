@@ -4,14 +4,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mady_seller/core/errors/exceptions.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/api_provider.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/api_provider.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/features/offer/data/datasources/get_offers_remote_datasource.dart';
 import 'package:mady_seller/features/offer/data/models/get_offers/get_offers_model.dart';
 import 'package:mady_seller/features/offer/domain/entities/offer/offer.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import '../../../../fixtures/fixture_reader.dart';
 import 'get_offers_remote_datasource_impl_test.mocks.dart';
 

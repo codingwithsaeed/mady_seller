@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mady_seller/core/errors/failure.dart';
-import 'package:mady_seller/core/nework/params.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
 import 'package:mady_seller/features/login/domain/repositories/login_repository.dart';
 import 'package:mady_seller/features/login/domain/usecases/login_usecase.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'login_usecase_test.mocks.dart';
 
 @GenerateMocks([LoginRepository])
@@ -48,7 +49,8 @@ void main() {
         //act
         final result = await sut.doLogin(tParams);
         //assert
-        expect(result, const Left(GeneralFailure(Failure.noInternetConnection)));
+        expect(
+            result, const Left(GeneralFailure(Failure.noInternetConnection)));
         verify(repository.doLogin(tParams));
         verifyNoMoreInteractions(repository);
       },
@@ -58,7 +60,8 @@ void main() {
       "should return solid seller object if repository return it",
       () async {
         //arrange
-        when(repository.doLogin(any)).thenAnswer((_) async => const Right(tSeller));
+        when(repository.doLogin(any))
+            .thenAnswer((_) async => const Right(tSeller));
         //act
         final result = await sut.doLogin(tParams);
         //assert
