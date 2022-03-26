@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mady_seller/core/network/params.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/core/utils/utils.dart';
 import 'package:mady_seller/core/x/x_widgets.dart';
@@ -75,22 +76,30 @@ class SingleOfferPage extends GetView<SingleOfferController> {
             name: 'محتویات بسته:',
             value: offer.content!,
             onTap: offer.canUpdate
-                ? () {
-                    showGreenSnackbar('آپدیت کردن');
-                  }
+                ? () => showMyBottomSheet(offer.oid!, 'content', 'محتویات')
                 : null,
           ),
           XDetailsCard(
             name: 'قیمت اصلی:',
             value: Utils.numberFormatter(offer.price!),
+            onTap: offer.canUpdate
+                ? () => showMyBottomSheet(offer.oid!, 'price', 'قیمت اصلی')
+                : null,
           ),
           XDetailsCard(
             name: 'درصد تخفیف:',
             value: offer.percent!,
+            onTap: offer.canUpdate
+                ? () => showMyBottomSheet(offer.oid!, 'percent', 'درصد تخفیف')
+                : null,
           ),
           XDetailsCard(
             name: 'قیمت باتخفیف:',
             value: Utils.numberFormatter(offer.currentPrice!),
+            onTap: offer.canUpdate
+                ? () => showMyBottomSheet(
+                    offer.oid!, 'current_price', 'قیمت باتخفیف')
+                : null,
           ),
           XDetailsCard(
             name: 'تاریخ تخفیف:',
@@ -129,6 +138,67 @@ class SingleOfferPage extends GetView<SingleOfferController> {
           ),
         ],
       ),
+    );
+  }
+
+  void showMyBottomSheet(String oid, String field, String title) {
+    var newValue = '';
+    Get.bottomSheet(
+      Wrap(
+        children: [
+          Card(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                topRight: Radius.circular(15.0),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      '$title جدید را وارد کنید ',
+                      style: const TextStyle(fontSize: 20.0),
+                    ),
+                  ),
+                  XHintTextField(
+                    hint: '',
+                    autoFocus: true,
+                    onChanged: (value) {
+                      newValue = value;
+                    },
+                  ),
+                  XButton(
+                    onPressed: () {
+                      var params = Params({
+                        'action': 'update_offer_$field',
+                        'oid': oid,
+                        field: newValue,
+                      });
+
+                      controller.updateOffer(params);
+                      Get.back();
+                    },
+                    title: 'آپدیت',
+                    color: Colors.yellow.shade800,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      isScrollControlled: true,
     );
   }
 }

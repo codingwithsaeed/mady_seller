@@ -4,6 +4,7 @@ class XHintTextField extends StatelessWidget {
   final String hint;
   final IconData? icon;
   final bool obscureText;
+  final bool autoFocus;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
   const XHintTextField({
@@ -12,6 +13,7 @@ class XHintTextField extends StatelessWidget {
     this.onChanged,
     this.controller,
     this.obscureText = false,
+    this.autoFocus = false,
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +22,7 @@ class XHintTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
-        autofocus: false,
+        autofocus: autoFocus,
         controller: controller,
         onChanged: onChanged,
         obscureText: obscureText,

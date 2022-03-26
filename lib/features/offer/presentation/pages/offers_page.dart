@@ -81,10 +81,11 @@ class OffersPage extends GetView<OffersController> {
                             mainAxisSpacing: 2.0),
                     itemBuilder: ((_, index) => ListItem(
                           offer: state![index],
-                          onTap: () => Get.toNamed(
-                            AppRoutes.singleOffer,
-                            arguments: state[index],
-                          ),
+                          onTap: () async {
+                            await Get.toNamed(AppRoutes.singleOffer,
+                                arguments: state[index]);
+                            controller.getSellerId();
+                          },
                         )),
                     itemCount: state!.length,
                   ),
@@ -113,6 +114,7 @@ class OffersPage extends GetView<OffersController> {
 class ListItem extends StatelessWidget {
   final Offer offer;
   final VoidCallback onTap;
+
   const ListItem({
     Key? key,
     required this.onTap,
