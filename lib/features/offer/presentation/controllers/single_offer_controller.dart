@@ -50,6 +50,41 @@ class SingleOfferController extends GetxController with StateMixin<Offer> {
       change(lastOffer, status: RxStatus.success());
     });
   }
+
+  Future<void> uploadPicture({
+    required String name,
+    required String image,
+  }) async {
+    change(null, status: RxStatus.loading());
+    final result = await _usecase.uploadPicture(
+      Params({
+        'action': 'upload_image',
+        'name': name,
+        'image': image,
+      }),
+    );
+    result.fold((failure) {
+      change(lastOffer, status: RxStatus.success());
+      showErrorSnackbar((failure as GeneralFailure).message);
+    }, (link) {
+      updateOffer(Params({
+        'action': 'update_offer_picture',
+        'oid': lastOffer.oid,
+        'picture': link,
+        'current_picture': lastOffer.picture
+      }));
+    });
+  }
+
+  Future<void> determineOfferStatus(Params params) async {
+    final result = await _usecase.determineOfferStatus(params);
+    result.fold((error) {
+      showErrorSnackbar((error as GeneralFailure).message);
+      change(lastOffer, status: RxStatus.success());
+    }, (isDone) {
+      Get.back();
+    });
+  }
 }
 
 extension BetterOffer on Offer {

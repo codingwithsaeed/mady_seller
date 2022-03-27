@@ -9,11 +9,15 @@ class SingleOfferUsecase {
 
   SingleOfferUsecase(this._repository);
 
-  Future<Either<Failure, bool>> updateOffer(Params params) async {
-    return await _repository.updateOffer(params);
-  }
+  Future<Either<Failure, bool>> updateOffer(Params params) async =>
+      await _repository.updateOffer(params);
 
-  Future<Either<Failure, Offer>> getOffer(Params params) async {
-    return await _repository.getOffer(params);
-  }
+  Future<Either<Failure, Offer>> getOffer(Params params) async =>
+      await _repository.getOffer(params);
+
+  Future<Either<Failure, String>> uploadPicture(Params params) async =>
+      await _repository.uploadPicture(params);
+
+  Future<Either<Failure, bool>> determineOfferStatus(Params params) async =>
+      await _repository.determineOfferStatus(params);
 }

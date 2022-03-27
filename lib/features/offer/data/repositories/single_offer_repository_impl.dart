@@ -37,4 +37,35 @@ class SingleOfferRepositoryImpl implements SingleOfferRepository {
       return Left(GeneralFailure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> uploadPicture(Params params) async {
+    if (!await _networkInfo.isConnected)
+      return const Left(GeneralFailure(Failure.noInternetConnection));
+
+    try {
+      final result = await _datasource.uploadPicture(params.param);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(GeneralFailure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> determineOfferStatus(Params params) async {
+    if (!await _networkInfo.isConnected)
+      return const Left(GeneralFailure(Failure.noInternetConnection));
+
+    try {
+      final result = await _datasource.determineOffer(params.param);
+      if (result.success == 1)
+        return const Right(true);
+      else if (result.success == 0)
+        return const Left(GeneralFailure('خطایی رخ داد!'));
+      else
+        return Left(GeneralFailure(result.error!));
+    } on ServerException catch (e) {
+      return Left(GeneralFailure(e.message));
+    }
+  }
 }
