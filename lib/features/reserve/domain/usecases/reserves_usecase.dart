@@ -11,4 +11,7 @@ class ReservesUsecase {
 
   Future<Either<Failure, List<Reserve>>> getReserves(Params params) async =>
       await _repository.getReserves(params);
+
+  Future<Either<Failure, bool>> determineReserveStatus(Params params) async =>
+      await _repository.determineReserveStatus(params);
 }

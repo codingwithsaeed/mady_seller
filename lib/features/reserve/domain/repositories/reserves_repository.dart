@@ -5,4 +5,5 @@ import 'package:mady_seller/features/reserve/domain/entities/reserve/reserve.dar
 
 abstract class ReservesRepository {
   Future<Either<Failure, List<Reserve>>> getReserves(Params params);
+  Future<Either<Failure, bool>> determineReserveStatus(Params params);
 }

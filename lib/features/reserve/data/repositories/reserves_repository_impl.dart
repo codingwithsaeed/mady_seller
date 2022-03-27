@@ -24,4 +24,17 @@ class ReservesRepositoryImpl implements ReservesRepository {
       return Left(GeneralFailure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> determineReserveStatus(Params params) async {
+    try {
+      if (!await _networkInfo.isConnected)
+        return const Left(GeneralFailure(Failure.noInternetConnection));
+      final result = await _datasource.determineReserveStatus(params.param);
+      if (result) return Right(result);
+      return const Left(GeneralFailure('خطایی رخ داد!'));
+    } on ServerException catch (e) {
+      return Left(GeneralFailure(e.message));
+    }
+  }
 }

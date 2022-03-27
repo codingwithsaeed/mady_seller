@@ -56,6 +56,7 @@ const List<String> _pocketTitles = [
   "سه ماهه ويژه، پانزده آگهی",
   "شش ماهه ويژه، سی آگهی"
 ];
+
 List<String> get pocketTitles => _pocketTitles;
 
 const List<String> _pocketStatus = [
@@ -78,6 +79,14 @@ final List<DropdownMenuItem<String>> offerTypes = [
 const List<String> _offerStatusTitle = ["پیش نمایش", "انتشار"];
 
 List<String> get offerStatusTitle => _offerStatusTitle;
+
+const List<String> _reserveStatusTitle = [
+  "تحویل داده نشده",
+  "تحویل داده شده",
+  "لغو شده",
+];
+
+List<String> get reserveStatusTitle => _reserveStatusTitle;
 
 final List<DropdownMenuItem<String>> offerStatus = [
   DropdownMenuItem(child: Text(offerStatusTitle[0]), value: "0"),

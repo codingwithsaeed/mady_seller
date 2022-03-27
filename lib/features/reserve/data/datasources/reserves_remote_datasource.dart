@@ -6,6 +6,8 @@ import 'package:mady_seller/features/reserve/data/models/get_reserves_model/get_
 
 abstract class ReservesRemoteDatasource {
   Future<GetReservesModel> getReserves(Map<String, dynamic> params);
+
+  Future<bool> determineReserveStatus(Map<String, dynamic> params);
 }
 
 class ReservesRemoteDatasourceImpl implements ReservesRemoteDatasource {
@@ -18,5 +20,12 @@ class ReservesRemoteDatasourceImpl implements ReservesRemoteDatasource {
     final response = await _apiProvider.post(currentDataUrl, params: params);
     var reserves = GetReservesModel.fromJson(jsonDecode(response.body));
     return reserves;
+  }
+
+  @override
+  Future<bool> determineReserveStatus(Map<String, dynamic> params) async {
+    final result = await _apiProvider.post(currentDataUrl, params: params);
+    if (jsonDecode(result.body)['success'] == 1) return true;
+    return false;
   }
 }
