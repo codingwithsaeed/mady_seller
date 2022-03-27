@@ -5,4 +5,5 @@ abstract class AppRoutes {
   static const String addOffer = '/addOffer';
   static const String singleOffer = '/singleOffer';
   static const String profile = '/profile';
+  static const String reserve = '/reserve';
 }

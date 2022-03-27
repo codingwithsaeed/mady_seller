@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mady_seller/core/network/params.dart';
+import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/core/utils/utils.dart';
 import 'package:mady_seller/core/x/x_widgets.dart';
@@ -207,7 +208,8 @@ class SingleOfferPage extends GetView<SingleOfferController> {
           if (offer.status != '0')
             XButton(
                 color: Colors.yellow.shade800,
-                onPressed: () {},
+                onPressed: () =>
+                    Get.toNamed(AppRoutes.reserve, arguments: offer.oid),
                 title: 'مشاهده رزروها'),
           if (offer.status == '0')
             Row(
