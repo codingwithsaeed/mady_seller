@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/features/offer/domain/entities/offer/offer.dart';
 import 'package:mady_seller/features/offer/presentation/controllers/offers_controller.dart';
+import 'package:mady_seller/responsive.dart';
 
 class OffersPage extends GetView<OffersController> {
   const OffersPage({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class OffersPage extends GetView<OffersController> {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 10,
+        elevation: 5,
         shadowColor: Colors.yellow,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -74,11 +75,14 @@ class OffersPage extends GetView<OffersController> {
             (state) => Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 2.0,
-                            mainAxisSpacing: 2.0),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: Responsive.isMobile(context)
+                            ? 2
+                            : Responsive.isTablet(context)
+                                ? 3
+                                : 4,
+                        crossAxisSpacing: 2.0,
+                        mainAxisSpacing: 2.0),
                     itemBuilder: ((_, index) => ListItem(
                           offer: state![index],
                           onTap: () async {
@@ -155,15 +159,34 @@ class ListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CircleAvatar(
-                radius: 70,
-                backgroundImage: NetworkImage(offer.picture!),
+              const Spacer(),
+              Expanded(
+                flex: 5,
+                child: CircleAvatar(
+                  radius: Responsive.isMobile(context)
+                      ? 70
+                      : Responsive.isTablet(context)
+                          ? 85
+                          : 100,
+                  backgroundImage: NetworkImage(offer.picture!),
+                ),
               ),
-              Text(
-                offer.content!,
-                maxLines: 1,
-                softWrap: false,
+              const Spacer(),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  offer.content!,
+                  maxLines: 1,
+                  softWrap: false,
+                  style: TextStyle(
+                      fontSize: Responsive.isMobile(context)
+                          ? 14
+                          : Responsive.isTablet(context)
+                              ? 23
+                              : 30),
+                ),
               ),
+              const Spacer(),
             ],
           ),
         ),

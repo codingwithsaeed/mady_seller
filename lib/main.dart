@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
@@ -22,5 +23,13 @@ class MyApp extends StatelessWidget {
         transitionDuration: const Duration(milliseconds: 500),
         initialRoute: AppPages.initialRoute,
         getPages: AppPages.pages,
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.stylus,
+            PointerDeviceKind.touch,
+            PointerDeviceKind.unknown
+          },
+        ),
       );
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/core/utils/utils.dart';
 import 'package:mady_seller/features/login/presentation/controller/login_controller.dart';
+import 'package:mady_seller/responsive.dart';
 
 class LoginPage extends GetView<LoginController> {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,14 +11,16 @@ class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('مادی فروشنده'),
-      ),
-      body: buildBody(),
+      appBar: Responsive.isMobile(context)
+          ? AppBar(
+              title: const Text('مادی فروشنده'),
+            )
+          : null,
+      body: buildBody(context),
     );
   }
 
-  Widget buildBody() {
+  Widget buildBody(BuildContext context) {
     controller.addListener((() {
       if (controller.status.isSuccess) {
         Get.offNamed(AppRoutes.offers);
@@ -29,78 +32,129 @@ class LoginPage extends GetView<LoginController> {
             snackPosition: SnackPosition.BOTTOM);
       }
     }));
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Responsive(
+        mobile: onMobile(context),
+        tablet: onDesktop(context),
+        desktop: onDesktop(context));
+  }
+
+  Widget onDesktop(BuildContext context) {
+    return Row(
       children: [
-        const Flexible(
-          flex: 1,
-          child: Image(
-            image: AssetImage('assets/images/sale-yellow.png'),
+        Expanded(
+          flex: Responsive.isTablet(context) ? 5 : 2,
+          child: Container(
+            color: Colors.yellow.shade800,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Spacer(
+                  flex: 3,
+                ),
+                const Image(
+                  image: AssetImage('assets/images/sale-white.png'),
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+                Center(
+                  child: Text(
+                    'به مادی نسخه فروشنده خوش آمدید.\nشماره موبایل و گذرواژه خود را وارد کنید\nو از مادی استفاده کنید :)',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Responsive.isTablet(context) ? 23 : 40.0),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+              ],
+            ),
           ),
         ),
-        Flexible(
-          flex: 2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              MyTextField(
-                label: 'شماره موبایل',
-                icon: Icons.person,
-                validator: (text) {
-                  if (text == null || text.isEmpty)
-                    return 'شماره موبایل را وارد کنید';
-                  if (!text.isValidPhone) return 'شماره موبایل معتبر نیست';
-                  return null;
-                },
-                keyboardType: TextInputType.phone,
-                onChange: (value) => controller.phone.value = value,
-              ),
-              MyTextField(
-                label: 'گذرواژه',
-                icon: Icons.password,
-                keyboardType: TextInputType.visiblePassword,
-                isPassword: true,
-                validator: (text) {
-                  if (text == null || text.isEmpty)
-                    return 'گذرواژه را وارد کنید';
-                  if (text.isValidPassword) return 'گذرواژه معتبر نیست';
-                  return null;
-                },
-                onChange: (value) => controller.password.value = value,
-              ),
-              controller.obx(((state) => returnButton()),
-                  onError: (error) => returnButton(),
-                  onLoading: returnLoading(),
-                  onEmpty: returnButton()),
-            ],
-          ),
-        ),
+        Expanded(
+          child: onMobile(context),
+          flex: Responsive.isTablet(context) ? 4 : 1,
+        )
       ],
     );
   }
-}
 
-Widget returnLoading() => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-          child: CircularProgressIndicator(color: Colors.yellow.shade800)),
+  Widget onMobile(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (!Responsive.isMobile(context)) Spacer(),
+          if (Responsive.isMobile(context))
+            const Flexible(
+              flex: 1,
+              child: Image(
+                image: AssetImage('assets/images/sale-yellow.png'),
+              ),
+            ),
+          Flexible(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                MyTextField(
+                  label: 'شماره موبایل',
+                  icon: Icons.person,
+                  validator: (text) {
+                    if (text == null || text.isEmpty)
+                      return 'شماره موبایل را وارد کنید';
+                    if (!text.isValidPhone) return 'شماره موبایل معتبر نیست';
+                    return null;
+                  },
+                  keyboardType: TextInputType.phone,
+                  onChange: (value) => controller.phone.value = value,
+                ),
+                MyTextField(
+                  label: 'گذرواژه',
+                  icon: Icons.password,
+                  keyboardType: TextInputType.visiblePassword,
+                  isPassword: true,
+                  validator: (text) {
+                    if (text == null || text.isEmpty)
+                      return 'گذرواژه را وارد کنید';
+                    if (text.isValidPassword) return 'گذرواژه معتبر نیست';
+                    return null;
+                  },
+                  onChange: (value) => controller.password.value = value,
+                ),
+                controller.obx(((state) => returnButton()),
+                    onError: (error) => returnButton(),
+                    onLoading: returnLoading(),
+                    onEmpty: returnButton()),
+              ],
+            ),
+          ),
+        ],
+      );
+
+  Widget returnLoading() => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+            child: CircularProgressIndicator(color: Colors.yellow.shade800)),
+      );
+
+  Widget returnButton() {
+    return MyButton(
+      label: 'ورود به برنامه',
+      onPressed: () {
+        FocusManager.instance.primaryFocus!.unfocus();
+        Get.find<LoginController>().doLogin();
+      },
+      color: Colors.yellow.shade800,
     );
-
-Widget returnButton() {
-  return MyButton(
-    label: 'ورود به برنامه',
-    onPressed: () {
-      FocusManager.instance.primaryFocus!.unfocus();
-      Get.find<LoginController>().doLogin();
-    },
-    color: Colors.yellow.shade800,
-  );
+  }
 }
 
 class MyButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final Color color;
+
   const MyButton(
       {Key? key,
       required this.label,
