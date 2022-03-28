@@ -94,10 +94,14 @@ final List<DropdownMenuItem<String>> offerStatus = [
 ];
 
 void showErrorSnackbar(String message) {
-  Get.snackbar('خطا', message,
-      backgroundColor: Colors.red.shade700,
-      colorText: Colors.white,
-      snackPosition: SnackPosition.BOTTOM);
+  Get.snackbar(
+    'خطا',
+    message,
+    backgroundColor: Colors.red.shade700,
+    colorText: Colors.white,
+    snackPosition: SnackPosition.BOTTOM,
+    duration: const Duration(seconds: 1),
+  );
 }
 
 void showGreenSnackbar(String message) {

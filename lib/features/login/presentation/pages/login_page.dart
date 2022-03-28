@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mady_seller/core/routes/app_routes.dart';
+import 'package:mady_seller/core/utils/utils.dart';
 import 'package:mady_seller/features/login/presentation/controller/login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
@@ -10,7 +11,7 @@ class LoginPage extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('اپ فروشندگان'),
+        title: const Text('مادی فروشنده'),
       ),
       body: buildBody(),
     );
@@ -45,12 +46,26 @@ class LoginPage extends GetView<LoginController> {
               MyTextField(
                 label: 'شماره موبایل',
                 icon: Icons.person,
+                validator: (text) {
+                  if (text == null || text.isEmpty)
+                    return 'شماره موبایل را وارد کنید';
+                  if (!text.isValidPhone) return 'شماره موبایل معتبر نیست';
+                  return null;
+                },
+                keyboardType: TextInputType.phone,
                 onChange: (value) => controller.phone.value = value,
               ),
               MyTextField(
                 label: 'گذرواژه',
                 icon: Icons.password,
+                keyboardType: TextInputType.visiblePassword,
                 isPassword: true,
+                validator: (text) {
+                  if (text == null || text.isEmpty)
+                    return 'گذرواژه را وارد کنید';
+                  if (text.isValidPassword) return 'گذرواژه معتبر نیست';
+                  return null;
+                },
                 onChange: (value) => controller.password.value = value,
               ),
               controller.obx(((state) => returnButton()),
@@ -74,7 +89,10 @@ Widget returnLoading() => Padding(
 Widget returnButton() {
   return MyButton(
     label: 'ورود به برنامه',
-    onPressed: () => Get.find<LoginController>().doLogin(),
+    onPressed: () {
+      FocusManager.instance.primaryFocus!.unfocus();
+      Get.find<LoginController>().doLogin();
+    },
     color: Colors.yellow.shade800,
   );
 }
@@ -114,6 +132,8 @@ class MyTextField extends StatelessWidget {
   final String label;
   final IconData? icon;
   final Function(String)? onChange;
+  final TextInputType keyboardType;
+  final String? Function(String?)? validator;
   final bool isPassword;
 
   const MyTextField({
@@ -121,6 +141,8 @@ class MyTextField extends StatelessWidget {
     required this.label,
     this.icon,
     this.onChange,
+    this.keyboardType = TextInputType.text,
+    this.validator,
     this.isPassword = false,
   }) : super(key: key);
 
@@ -129,8 +151,11 @@ class MyTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: TextFormField(
+        validator: validator,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         onChanged: onChange,
         obscureText: isPassword,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           prefixIcon: Icon(icon),
           label: Text(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/core/x/x_widgets.dart';
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
@@ -43,6 +45,7 @@ class ProfilePage extends GetWidget<ProfileController> {
   Widget buildBody(Seller seller) {
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(
             height: 10.0,
@@ -93,6 +96,17 @@ class ProfilePage extends GetWidget<ProfileController> {
           XDetailsCard(
             name: 'انقضای بسته:',
             value: seller.expire,
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          XButton(
+            onPressed: () async {
+              await GetStorage().remove('id');
+              Get.offAllNamed(AppRoutes.login);
+            },
+            title: 'خروج از حساب کاربری',
+            color: Colors.yellow.shade800,
           ),
           const SizedBox(
             height: 10.0,
