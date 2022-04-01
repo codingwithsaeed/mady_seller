@@ -82,9 +82,35 @@ class SingleOfferPage extends GetView<SingleOfferController> {
           child: Container(
             color: Colors.yellow.shade800,
             child: Center(
-              child: XCircleLogo(
-                logo: offer.picture!,
-                radius: Responsive.isTablet(context) ? 110 : 150.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  XCircleLogo(
+                    logo: offer.picture!,
+                    radius: Responsive.isTablet(context) ? 110 : 150.0,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  if (offer.canUpdate)
+                    TextButton(
+                      onPressed: () async {
+                        final ImagePicker _picker = ImagePicker();
+                        final XFile? image = await _picker.pickImage(
+                            source: ImageSource.gallery);
+                        final encodedImage =
+                            base64Encode(await image!.readAsBytes());
+                        final fileName = Utils.getRandomString(10);
+
+                        await controller.uploadPicture(
+                            name: fileName, image: encodedImage);
+                      },
+                      child: const Text(
+                        'تغییر تصویر',
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      ),
+                    ),
+                ],
               ),
             ),
           ),
@@ -107,22 +133,24 @@ class SingleOfferPage extends GetView<SingleOfferController> {
               ),
             if (Responsive.isMobile(context)) XCircleLogo(logo: offer.picture!),
             if (offer.canUpdate)
-              TextButton(
-                onPressed: () async {
-                  final ImagePicker _picker = ImagePicker();
-                  final XFile? image =
-                      await _picker.pickImage(source: ImageSource.gallery);
-                  final encodedImage = base64Encode(await image!.readAsBytes());
-                  final fileName = Utils.getRandomString(10);
+              if (Responsive.isMobile(context))
+                TextButton(
+                  onPressed: () async {
+                    final ImagePicker _picker = ImagePicker();
+                    final XFile? image =
+                        await _picker.pickImage(source: ImageSource.gallery);
+                    final encodedImage =
+                        base64Encode(await image!.readAsBytes());
+                    final fileName = Utils.getRandomString(10);
 
-                  await controller.uploadPicture(
-                      name: fileName, image: encodedImage);
-                },
-                child: const Text(
-                  'تغییر تصویر',
-                  style: TextStyle(fontSize: 20.0),
+                    await controller.uploadPicture(
+                        name: fileName, image: encodedImage);
+                  },
+                  child: const Text(
+                    'تغییر تصویر',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
                 ),
-              ),
             const SizedBox(
               height: 10.0,
             ),

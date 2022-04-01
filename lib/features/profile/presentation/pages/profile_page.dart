@@ -38,9 +38,11 @@ class ProfilePage extends GetWidget<ProfileController> {
     );
   }
 
-  Widget buildLoading() => Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: CircularProgressIndicator(color: Colors.yellow.shade800),
+  Widget buildLoading() => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: CircularProgressIndicator(color: Colors.yellow.shade800),
+        ),
       );
 
   Widget buildBody(BuildContext context, Seller seller) {

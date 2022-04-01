@@ -1,11 +1,11 @@
 {
-    "name": "mady_seller",
-    "short_name": "mady_seller",
+    "name": "مادی فروشنده",
+    "short_name": "مادی سل",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "نسخه فروشنده برنامه مادی",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

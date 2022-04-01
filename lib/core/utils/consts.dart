@@ -41,8 +41,8 @@ const _localUrl = 'http://192.168.1.2/mady/webservice_seller.php';
 const _onlineUrl = 'https://codingwithsaeed.ir/api/mady/webservice_seller.php';
 const _localCheckUrl = 'http://192.168.1.2/mady/check_online.php';
 const _onlineCheckUrl = 'https://codingwithsaeed.ir/api/mady/check_online.php';
-final currentDataUrl = Uri.parse(_localUrl);
-final currentCheckUrl = Uri.parse(_localCheckUrl);
+final currentDataUrl = Uri.parse(_onlineUrl);
+final currentCheckUrl = Uri.parse(_onlineCheckUrl);
 
 const List<String> _pocketTitles = [
   "یک روزه، یک آگهی",

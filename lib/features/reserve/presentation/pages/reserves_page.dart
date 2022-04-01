@@ -69,7 +69,6 @@ class ReservesPage extends GetView<ReservesController> {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(15),
-            bottomRight: Radius.circular(15),
           ),
         ),
         automaticallyImplyLeading: true,

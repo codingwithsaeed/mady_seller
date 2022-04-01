@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/core/utils/utils.dart';
 import 'package:mady_seller/features/login/presentation/controller/login_controller.dart';
 import 'package:mady_seller/responsive.dart';
@@ -13,6 +12,13 @@ class LoginPage extends GetView<LoginController> {
     return Scaffold(
       appBar: Responsive.isMobile(context)
           ? AppBar(
+              elevation: 5,
+              shadowColor: Colors.yellow,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(15),
+                ),
+              ),
               title: const Text('مادی فروشنده'),
             )
           : null,
@@ -20,23 +26,10 @@ class LoginPage extends GetView<LoginController> {
     );
   }
 
-  Widget buildBody(BuildContext context) {
-    controller.addListener((() {
-      if (controller.status.isSuccess) {
-        Get.offNamed(AppRoutes.offers);
-      }
-      if (controller.status.isError) {
-        Get.snackbar('خطا', controller.status.errorMessage!,
-            backgroundColor: Colors.red.shade700,
-            colorText: Colors.white,
-            snackPosition: SnackPosition.BOTTOM);
-      }
-    }));
-    return Responsive(
-        mobile: onMobile(context),
-        tablet: onDesktop(context),
-        desktop: onDesktop(context));
-  }
+  Widget buildBody(BuildContext context) => Responsive(
+      mobile: onMobile(context),
+      tablet: onDesktop(context),
+      desktop: onDesktop(context));
 
   Widget onDesktop(BuildContext context) {
     return Row(

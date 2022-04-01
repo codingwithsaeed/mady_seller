@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:mady_seller/core/errors/failure.dart';
 import 'package:mady_seller/core/network/params.dart';
+import 'package:mady_seller/core/routes/app_routes.dart';
 import 'package:mady_seller/core/utils/consts.dart';
 import 'package:mady_seller/features/login/domain/entities/seller/seller.dart';
 import 'package:mady_seller/features/login/domain/usecases/login_usecase.dart';
@@ -30,7 +32,7 @@ class LoginController extends GetxController with StateMixin<Seller> {
     }
 
     change(null, status: RxStatus.loading());
-    await Future.delayed(const Duration(seconds: 1));
+    //await Future.delayed(const Duration(seconds: 1));
     final result = await _usecase.doLogin(
       Params({
         'action': 'signin',
@@ -41,10 +43,12 @@ class LoginController extends GetxController with StateMixin<Seller> {
     result.fold((error) {
       if (error is GeneralFailure) {
         change(null, status: RxStatus.error(error.message));
+        showErrorSnackbar(error.message);
       }
     }, (seller) async {
       change(seller, status: RxStatus.success());
       await _usecase.saveSellerId(seller.sid);
+      Get.offNamed(AppRoutes.offers);
     });
   }
 }

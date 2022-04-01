@@ -24,7 +24,6 @@ class OffersPage extends GetView<OffersController> {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(15),
-            bottomRight: Radius.circular(15),
           ),
         ),
         title: const Text('مادی فروشنده'),
